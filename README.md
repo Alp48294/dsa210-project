@@ -42,7 +42,7 @@ SciPy & Statsmodels: For hypothesis testing and regression analysis.
 Jupyter Notebook: For exploratory data analysis.
 
 ## Analysis Plan
-Data Collection:
+**Data Collection:**
 Import daily air quality, sleep, and weather data into a Pandas DataFrame.
 Align datasets by date for consistency.
 
@@ -70,7 +70,11 @@ For instance, I will compare my average sleep duration on days with “Good” a
 By the end of this project, I hope to answer:
 
 Does air pollution in Istanbul significantly affect sleep duration or quality?
+
 Are there specific pollutant thresholds where sleep is noticeably impacted?
+
 How do weather conditions interact with air pollution’s effects on sleep?
+
 Can a predictive model be developed to estimate sleep quality based on environmental conditions?
+
 This project will not only provide insights into how air quality impacts personal health but also serve as a real-world application of data science techniques, blending personal data with urban environmental analysis.
