@@ -1,89 +1,72 @@
 # City Air - Dsa210-project
 ## Project Overview
-In this project I will explore how does Istanbul's air quality impacts my sleeping quality over the next semester. I will use publicly available city data on air pollution with my own step count (maybe even my sleep duration data from sleep tracking app) to uncover whether quality of the air correspond to changes with my outdoor activity time on the campus. I will use data visualization and statistical analysis to find patterns and check hypothesis
+This project analyzes the relation between Tuzla’s air quality and my sleep patterns over a three months period. By using publicly available air pollution data with my personal sleep data from a mobile app, I aim to explore whether the changes in air quality impacts my sleep duration and quality. From data collection to using data visualization and statistical analysis, I will assess trends and test hypotheses about the topic. I aim to provide personal insights into how environmental factors affect sleep and contribute to a broader understanding of urban health challenges.
+
 ## Motivation
-After coming from countryside, I've often wondered if the quality of an metropolitan city's air affects how much I move around the city.
-I am exploring how Istanbul's urban air quality impacts my daily physical activity. Living in a large metropolitan area, I've often wondered if the quality of air affects how much I move around the city. This project combines my interest in urban environmental health with personal fitness data to answer a question that has both personal relevance and broader public health implications.
-Data Sources and Collection
-This project will integrate multiple data sources:
+From coming from countryside onto living in a metropolitan city like Istanbul, I wondered how enviromental factors like air pollution may be affecting my sleep. By relying on objective, publicly available datasets and my own sleep records from mobile apps, I aim to take a data-driven approach to a key aspect of well-being. The findings may help to optimize my sleep habits as well as raise awareness about the impact of air pollution on health.
 
-## Primary Air Quality Data:
+## Learning Objectives
+1. Analyzing the Relation Between Sleep & Air Quality: I will investigate whether poor air quality is associated with reduced sleep duration or lower sleep quality.
 
-Daily air quality measurements (PM2.5, PM10, NO₂) from the Istanbul Metropolitan Municipality Open Data Portal (data.ibb.istanbul)
-World Air Quality Index (WAQI) historical data for cross-validation
+2. Controlling for External Factors: I will enrich the analysis with weather data and temperatures to distinguish air quality effects from other environmental conditions.
 
+3. Identifying Thresholds: I will find out if specific pollution levels for the specific air pollutants(e.g., PM2.5, NO₂) significantly impact sleep patterns.
 
-Personal Activity Data:
+4. Predictive Modeling: I will use regression models to assess and predict how air pollution influences sleep.
 
-Daily step count collected through my smartphone's health app
-Location data (anonymized to district level) to correlate with specific air monitoring stations
+5. Apply Data Science Techniques: I will utilize data collection, visualization, and statistical analysis skills learned in DSA 210.
 
+## Dataset
+The dataset will consist of:
 
-Data Enrichment:
+City Air Quality Data:
+Daily measurements of PM2.5, PM10, NO₂, SO₂, CO, O3 from:
+Istanbul Hava Kalitesi İzleme Merkezi
+IQAir
 
-Weather data from OpenWeatherMap API (temperature, humidity, precipitation)
-Calendar data (weekdays/weekends, holidays) to account for routine changes
+Personal Sleep Data:
+Sleep duration and quality scores collected from a sleep tracking app.
 
+Additional Enrichment:
+Weather data (temperature, humidity, wind) from Hava Durumu app to control for confounding variables.
 
+Tools & Technologies
+Python: For data processing and statistical analysis.
+Pandas & NumPy: For data cleaning and manipulation.
+Matplotlib & Seaborn: For data visualization.
+SciPy & Statsmodels: For hypothesis testing and regression analysis.
+Jupyter Notebook: For exploratory data analysis.
 
-I'll collect this data using a combination of API access (where available) and manual exports, automating the process where possible using Python scripts for regular collection.
-Planned Analysis
-My analysis will progress through several stages:
-Exploratory Data Analysis
+Analysis Plan
+Data Collection:
+Import daily air quality, sleep, and weather data into a Pandas DataFrame.
+Align datasets by date for consistency.
 
-Temporal patterns in both air quality and activity data
-Distribution analysis of key variables
-Correlation analysis between pollutant levels and step counts
-Geographic visualization comparing different districts (particularly Tuzla area)
+Data Cleaning:
+Handle missing values, remove outliers, and standardize units.
 
-Statistical Analysis
+Visualization:
+Time series plots to observe trends in sleep duration vs. air quality.
+Scatter plots to explore potential correlations.
+Heatmaps to show relationships between multiple variables.
 
-Hypothesis testing:
+Hypothesis Testing:
+Example hypotheses:
+H₀: Air quality does not affect sleep duration or quality.
+Hₐ: Higher pollution levels correlate with shorter or lower-quality sleep.
+Perform statistical tests to validate findings.
 
-H₀: There is no significant relationship between air quality metrics and daily step count
-H₁: Days with poorer air quality show statistically significant reductions in step count
+Trend Analysis & Prediction:
+Develop a regression model to predict sleep quality based on air pollution levels.
+Identify patterns such as seasonal changes in air quality and their impact on sleep.
+Example Analysis
+For instance, I will compare my average sleep duration on days with “Good” air quality vs. days with “Unhealthy” air quality. I will also create a scatter plot with PM2.5 levels on the x-axis and sleep quality scores on the y-axis to identify potential trends. If a clear negative correlation exists, it would suggest that air pollution might contribute to poorer sleep.
 
+Conclusion
+By the end of this project, I hope to answer:
 
-ANOVA to compare activity levels across different air quality categories
-Multiple regression analysis controlling for weather variables and day of week
-
-Machine Learning Approaches
-
-Develop prediction models using:
-
-Linear regression models
-Decision trees to identify threshold values
-Time series forecasting to predict activity levels based on forecasted air quality
-
-
-Feature importance analysis to identify which pollutants have the strongest impact
-
-Expected Findings
-I expect to discover:
-
-Threshold levels of specific pollutants that correlate with significant activity reduction
-Seasonal patterns in both air quality and its impact on activity
-The relative importance of different pollutants on activity decisions
-The effectiveness of weather as a control variable
-
-Limitations and Future Work
-
-Sample size limitations (data from a single individual)
-Potential confounding variables beyond weather and calendar
-Limited geographic specificity of public air quality monitors
-
-Future work could include:
-
-Expanding to a multi-participant study
-Incorporating subjective survey data on perception of air quality
-Developing a simple application to provide personalized activity recommendations based on air quality forecasts
-
-Technical Implementation
-This project will be implemented entirely in Python, utilizing:
-
-Pandas and NumPy for data manipulation
-Matplotlib, Seaborn, and Plotly for visualization
-Scikit-learn for machine learning models
-Statsmodels for statistical analysis
-
-All code will be version-controlled through Git with regular commits documenting the progress.
+Does air pollution in Istanbul significantly affect sleep duration or quality?
+Are there specific pollutant thresholds where sleep is noticeably impacted?
+How do weather conditions interact with air pollution’s effects on sleep?
+Can a predictive model be developed to estimate sleep quality based on environmental conditions?
+This project will not only provide insights into how air quality impacts personal health but also serve as a real-world application of data science techniques, blending personal data with urban environmental analysis.
