@@ -1,4 +1,4 @@
-#     date,      AQI US, PM2.5, PM10, O3, NO2, SO2, CO, sleep_quality, time_to_sleep, sleep_duration
+#     date, AQI US, PM2.5, PM10, O3, NO2, SO2, CO, sleep_quality, time_to_sleep, sleep_duration
     ['2024-03-14', 89, 29.5, 101.6, 24.1, 88.8, 0.7, 497.5, 59, 38, 6.1],
     ['2024-03-15', 98, 34.1, 120.6, 14.4, 101.9, 0.6, 886, 37, 19, 7.5],
     ['2024-03-16', 102, 36.1, 96.2, 21, 93.6, 1.8, 634.8, 60, 26, 8],
