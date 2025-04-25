@@ -94,6 +94,70 @@ Correlation Heatmap: Highlighted CO’s negative association with sleep quality 
 Histograms & KDEs: Showed roughly normal sleep-duration distribution and right-skewed pollutant levels.
 
 Seasonal Decomposition (PM₂.₅): Weekly cycles were apparent, with slightly higher mid-week peaks.
+
+**Data Transformation**
+
+Weekend Indicator: Binary flag (is_weekend) from day-of-week.
+
+Sleep Efficiency: sleep_quality / sleep_duration
+
+Latency (hrs): time_to_sleep / 60
+
+Pollution Index: Weighted sum of standardized pollutant z-scores (PM₂.₅ 0.5; PM₁₀ 0.2; O₃ 0.1; NO₂ 0.1; SO₂ 0.05; CO 0.05), providing a single composite measure.
+
+Categorical Bins:
+
+PM₂.₅: Good/Moderate/Unhealthy for Sensitive/Unhealthy
+
+Sleep Quality: Poor/Fair/Good/Excellent
+
+These enrichments will allow me in multi-scale analyses (continuous, categorical, composite indices).
+
+## Hypothesis Testing & Results
+Weekend vs. Weekday Sleep Duration
+
+H₀: No difference in mean sleep duration.
+
+T-test result: t = 0.68, p = 0.507 → fail to reject H₀ (no significant weekend effect).
+
+**Correlation Tests:**
+
+CO: r = –0.51, p = 0.002 → significant negative correlation with sleep quality.
+
+Other pollutants & overall index: weak (|r| < 0.33) and non-significant (p > 0.05).
+
+Cluster Analysis (K-Means, k = 3)
+
+Cluster Centers (original units):
+
+
+Cluster	PM₂.₅	          Sleep Quality	  Sleep Duration
+
+0	      16.54	          55.13	          5.58
+
+1	      27.37	          53.00	          7.24
+
+2	      17.88	          74.44	          7.33
+
+Interpretation:
+Cluster 2 (moderate pollution) aligns with the highest sleep quality/duration, hinting at non-linear or threshold relationships.
+
+## Interpretation & Next Steps
+Key Finding: Carbon monoxide stands out as the only pollutant with a robust negative impact on sleep quality.
+
+No Evidence: Overall pollution index or weekend/weekdays meaningfully altered sleep duration.
+
+Complex Patterns: Cluster analysis suggests that moderate pollution days may coincide with better sleep—pointing to possible threshold or adaptive effects.
+
+Future Directions:
+
+Extend the timeframe (6–12 months) to capture seasonal effects.
+
+Integrate hourly pollutant and weather data (temperature, humidity, noise).
+
+Explore non-linear/interaction models (e.g., random forests, GAMs).
+
+Incorporate personal factors (stress, screen time, indoor air quality) for richer predictive power.
 ## Conclusion
 At the end of this project, I hope to answer:
 
