@@ -67,6 +67,33 @@ Identify patterns such as seasonal changes in air quality and their impact on sl
 Example Analysis
 For instance, I will compare my average sleep duration on days with “Good” air quality vs. days with “Unhealthy” air quality. I will also create a scatter plot with PM2.5 levels on the x-axis and sleep quality scores on the y-axis to identify potential trends. If a clear negative correlation exists, it would suggest that air pollution might contribute to poorer sleep.
 
+## Data Preparation
+Air Quality Data: Daily averages for six pollutants and the U.S. AQI index from IQAir/Istanbul Hava Kalitesi İzleme Merkezi.
+Sleep Data: Nightly sleep duration (hours), sleep quality score (0–100), and time-to-sleep (minutes) from a personal app.
+
+No missing values across 35 daily records.
+
+Outliers (identified via the IQR method) found in PM₁₀, O₃, SO₂, sleep quality, and time-to-sleep; each was inspected and removed to prevent distortion.
+## Data Analysis
+**Descriptive Statistics**
+
+PM₂.₅: Mean = 20.55 µg/m³ (σ = 7.06; 8.7 – 36.1)
+
+CO: Mean = 408.6 µg/m³ (σ = 184; 123 – 886)
+
+Sleep Duration: Mean = 6.90 hr (σ = 0.95; 5.1 – 9.1)
+
+Sleep Quality: Mean = 63.29 (σ = 15.39; 27 – 92)
+
+**Visualizations**
+
+Time Series Overlay: Daily PM₂.₅ vs. sleep quality—revealed occasional inverse patterns but no consistent day-to-day lag.
+
+Correlation Heatmap: Highlighted CO’s negative association with sleep quality (r ≈ –0.51).
+
+Histograms & KDEs: Showed roughly normal sleep-duration distribution and right-skewed pollutant levels.
+
+Seasonal Decomposition (PM₂.₅): Weekly cycles were apparent, with slightly higher mid-week peaks.
 ## Conclusion
 At the end of this project, I hope to answer:
 
