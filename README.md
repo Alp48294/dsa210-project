@@ -149,11 +149,9 @@ No Evidence: Overall pollution index or weekend/weekdays meaningfully altered sl
 
 Complex Patterns: Cluster analysis suggests that moderate pollution days may coincide with better sleep—pointing to possible threshold or adaptive effects.
 
-Future Directions:
+**Future Directions:**
 
-Extend the timeframe (6–12 months) to capture seasonal effects.
-
-Integrate hourly pollutant and weather data (temperature, humidity, noise).
+Integrate weather data (temperature, humidity, noise).
 
 Explore non-linear/interaction models (e.g., random forests, GAMs).
 
