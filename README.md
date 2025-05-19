@@ -142,20 +142,47 @@ Cluster	PM₂.₅	          Sleep Quality	  Sleep Duration
 Interpretation:
 Cluster 2 (moderate pollution) aligns with the highest sleep quality/duration, hinting at non-linear or threshold relationships.
 
-## Interpretation & Next Steps
+## Interpretation
 Key Finding: Carbon monoxide stands out as the only pollutant with a robust negative impact on sleep quality.
 
 No Evidence: Overall pollution index or weekend/weekdays meaningfully altered sleep duration.
 
 Complex Patterns: Cluster analysis suggests that moderate pollution days may coincide with better sleep—pointing to possible threshold or adaptive effects.
 
-**Future Directions:**
 
-Integrate weather data (temperature, humidity, noise).
+## Machine Learning Tasks
+**Prediction Goal:**
 
-Explore non-linear/interaction models (e.g., random forests, GAMs).
+My aim is to predict nightly sleep quality (0-100) as a function of temporal and environmental factors. I selected sleep quality as it measures both sleep duration and restfulness quality. Also it gives more of a better resolution than just saying bad and good sleep as well as enable regresssion.
 
-Incorporate personal factors (stress, screen time, indoor air quality) for richer predictive power.
+If it is possible to predict nights of poor sleep based on polution, one could schedule solutions for it(sleep masks, earlier sleep etc.).
+
+**Features For Modeling**
+
+**pollution_index:** Sum of weighted pollutant z scores(PM2.5, PM10)
+
+**sleep_efficiency:** Sleep quality per sleep duration
+
+**is_weekend:** Day is weekend or not
+
+**PM2.5_log, PM10_log:** To reduce right skew in pollutants
+
+## Models and Evaluation
+**Linear Regression Model:** The baseline model. It assumes linear, additive effects on features. It gives direct interpration for coefficients (how sleep quality changes per PM2.5 µg/m^3)
+
+**Random Regression of Forest:** This model captures non linear interactions and importance of features. It is robust to skewed distributions and outliers.
+
+**Support Vector Regressor:** This model is kernelized method for flexible non linear regression with robust error control.
+
+**Evaluation Metrics:** R² (Coefficient of Determination): A fraction of variance in sleep quality explained by the model. 1 is perfect and 0 is not better than mean.
+
+RMSE (Root Mean Squared Error): The average prediction error in sleep quality. Lower the value better it is and it penalizes large errors
+
+MAE (Mean Absolute Error): The average absolute error. It is easier to interpret as we say "on average it is off by x points".
+
+Also we will also show which feature matters most, checks for patterns and visually assess fit.
+
+
 ## Conclusion
 At the end of this project, I hope to answer:
 
