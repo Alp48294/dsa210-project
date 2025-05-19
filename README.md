@@ -153,45 +153,75 @@ Complex Patterns: Cluster analysis suggests that moderate pollution days may coi
 ## Machine Learning Tasks
 **Prediction Goal:**
 
-My aim is to predict nightly sleep quality (0-100) as a function of temporal and environmental factors. I selected sleep quality as it measures both sleep duration and restfulness quality. Also it gives more of a better resolution than just saying bad and good sleep as well as enable regresssion.
+My aim is to predict nightly binary sleep quality (0-1) using pollution and temporal features. It is a good sleep if quality is bigger than 60 or poor sleep otherwise. I selected sleep quality as it measures both sleep duration and restfulness quality.
 
 If it is possible to predict nights of poor sleep based on polution, one could schedule solutions for it(sleep masks, earlier sleep etc.).
 
 **Features For Modeling**
 
-**pollution_index:** Sum of weighted pollutant z scores(PM2.5, PM10)
+**pollution:** CO_log: Natural logarithm of carbon monoxide levels to reduce skewness.
 
-**sleep_efficiency:** Sleep quality per sleep duration
+PM2.5_log: Natural logarithm of PM₂.₅ to handle right-skewed distribution.
+
+NO2, O3: Raw levels of NO2 and O3 (µg/m³).
 
 **is_weekend:** Day is weekend or not
 
-**PM2.5_log, PM10_log:** To reduce right skew in pollutants
+## Models Selection
+**Logistic Regression Model:** The baseline model for interpretability. It uses hypermeters with L2 regularization (C=0.1) to prevent overfitting.
 
-## Models and Evaluation
-**Linear Regression Model:** The baseline model. It assumes linear, additive effects on features. It gives direct interpration for coefficients (how sleep quality changes per PM2.5 µg/m^3)
+**Random Forest Regression:** This model captures non linear interactions and importance of features. It is robust to skewed distributions and outliers. It uses hypermeters with n_estimators=100, max_depth=3 to balance complexity and overfitting.
 
-**Random Regression of Forest:** This model captures non linear interactions and importance of features. It is robust to skewed distributions and outliers.
+**Support Vector Regressor:** This model uses linear kernelized method for simplicity and class seperation. It uses hypermeters with C=0.5 to penalize misclassifications.
 
-**Support Vector Regressor:** This model is kernelized method for flexible non linear regression with robust error control.
+## Evaluation Metrics
+**Accuracy:** Proportion of correctly classified instances.
 
-**Evaluation Metrics:** R² (Coefficient of Determination): A fraction of variance in sleep quality explained by the model. 1 is perfect and 0 is not better than mean.
+**Precision:** Proportion of true positives among predicted positives in order to avoid false alarms.
 
-RMSE (Root Mean Squared Error): The average prediction error in sleep quality. Lower the value better it is and it penalizes large errors
+**Recall:** Proportion of actual positives correctly identified to avoid missing "good sleep" days.
 
-MAE (Mean Absolute Error): The average absolute error. It is easier to interpret as we say "on average it is off by x points".
+**F1-Score:** Harmonic mean of precision and recall. It balances both.
+
+**AUC-ROC:** Area under the receiver operating characteristic curve (discriminative power).
 
 Also we will also show which feature matters most, checks for patterns and visually assess fit.
 
+## Performance Summary
+
+![image](https://github.com/user-attachments/assets/1801ae06-99da-45ba-8116-3a423108ed5c)
+
+## Detailed Analysis
+**Logistic Regrassion:** It has a high recall (85.7%) value. It correctly identified 85.7% of actual "good sleep" days. It also has interpretible coefficients that gives explanation for each coefficient. However it has a moderate precision rate of 75%. Which also means 25% of predicted "good sleep" dats were false positives.
+
+**Random Forest:** The method perfectly recalled (identified) 100%  of all true "good sleep" days. It also has the highest F1-score of 87.5% which shows balanced precision and recall. However it also has a risk of overfitting due to small dataset we have.
+
+**Support Vector Regrassor:** The method has moderate AUC 0.84 value so it is better than random guessing. But it also has a low accuracy rate of 54.5 so it struggles with class imbalance (more "good sleep" days)
+
+## Logistic Regression Coefficients
+![image](https://github.com/user-attachments/assets/71410307-63e9-43ca-bb5a-3826b6b78fc0)
+
+**Key findings:** CO and PM2.5 are critical pollutants affecting sleep quality. Weekend effect is statistically negligible as it aligns with prior t-test results (p=0.51).
+
+**Confusion Matrices:** Logistic Regrassion: True Positives: 6 - False Positives: 2 - False Negatives: 1 - True Negatives: 3
+
+Random Forest: True Positives: 7 - False Positives: 2 - False Negatives: 0 - True Negatives: 3
+
+SVM: True Positives: 5 - False Positives: 3 - False Negatives: 2 - True Negatives: 2
+
+**ROC Curves:** Random Forest (AUC = 0.89) outperforms others, confirming strong class separation.
+
+
+
+## Some Recommendations
+Using air purifiers on days when CO > 400 µg/m³ or PM2.5 > 35 µg/m³.
+
+Limited outdoor activities during mid-week PM2.5 peaks which is observed in seasonal decomposition.
+
+As Random Forest has perfect recall, it is recommended for real-time alerts.
+
+The results also advocates for stricter emission controls on industrial zones near Tuzla to reduce CO/PM2.5 value.
+
 
 ## Conclusion
-At the end of this project, I hope to answer:
-
-Does air pollution in Istanbul significantly affect sleep duration or quality?
-
-Is there a threshold below which sleep is noticeably affected?
-
-How do weather conditions interact with the effect of air pollution on sleep?
-
-Can a predictive model be built to predict sleep quality based on environmental conditions?
-
-This project will not just provide individual insight into how air quality affects one's health individually but also serve as a real-world application of data science principles, combining personal data with city environmental studies.
+This classification ML method successfully identified CO and PM2.5 as key pollutants that disrupts sleep quality, with actionable thresholds for personal and policy interventions. While regression models underperformed due to data limitations, classification provided a robust framework for binary decision-making. Future work should focus on longitudinal data collection and integrating wearable metrics (heart rate) to refine predictions.
