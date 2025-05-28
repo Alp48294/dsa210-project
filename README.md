@@ -133,11 +133,11 @@ Cluster Centers (original units):
 
 Cluster	PM₂.₅	          Sleep Quality	  Sleep Duration
 
-0	      16.54	          55.13	          5.58
+0	  |    16.54	    |      55.13	     |     5.58
 
-1	      27.37	          53.00	          7.24
+1	   |   27.37	    |      53.00	    |      7.24
 
-2	      17.88	          74.44	          7.33
+2	   |   17.88	     |     74.44	     |     7.33
 
 Interpretation:
 Cluster 2 (moderate pollution) aligns with the highest sleep quality/duration, hinting at non-linear or threshold relationships.
